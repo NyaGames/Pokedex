@@ -29,9 +29,13 @@ var informacion = function () {
 	var sp_attack_stat = 65
 	var canvas = document.createElement('canvas');
 	canvas.id = 'chart';
+	canvas.style.width = '300px';
+	canvas.style.height = '200px';
+	canvas.style.position = 'absolute';
+	canvas.style.marginTop = '100px';
 	document.body.appendChild(canvas);
 	var ctx = canvas.getContext('2d');
-	var myChart = new Chart(ctx, {
+	var myChart = new Chart(canvas, {
 		type: 'radar',
 		data: {
 			labels: ["HP", "Attack", "Defense", "Speed", "Sp. Defense", "Sp. Attack"],
@@ -48,12 +52,16 @@ var informacion = function () {
 			}]
 		},
 		options: {
-			responsive: true,
+			responsive: false,
 			scale:{
 				ticks:{
 					min: 0,
 				}
 			}			
 		}
-	});	
+	});
+	// Change the display size
+	chart.resize(300, 200);
+	// Resync the render size
+	chart.resize();	
 };
