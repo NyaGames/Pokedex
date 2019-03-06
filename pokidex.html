@@ -1,0 +1,46 @@
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>Pokidex</title>
+         <style type="text/css">
+
+         	#pokiball{
+                margin-left: 810px;
+                margin-top: 410px;
+         	}
+
+            #abrir{
+                position: absolute;
+                margin-left: -400;
+                margin-top: 410px;
+                opacity: 0;
+
+            }
+
+         </style>
+    </head>
+
+    <body>
+
+    <script type="text/javascript">
+    document.body.style.backgroundImage = "url('Fondo.jpg')";
+
+    function openPokeball(){
+        var anim = document.getElementById('abrir');
+        var poke = document.getElementById('pokiball');
+
+        pokiball.style.opacity = 0;
+        anim.style.opacity = 100;
+
+    }
+
+    </script>
+   
+
+    <img id="pokiball" src='pokeball.gif' onclick="openPokeball()">
+
+    <img id="abrir" src='abrir.gif'>
+
+
+    </body>
+</html>
