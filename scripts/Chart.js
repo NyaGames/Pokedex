@@ -10728,7 +10728,7 @@ function throttled(fn, thisArg) {
 // Implementation based on https://github.com/marcj/css-element-queries
 function createResizer(handler) {
 	var resizer = document.createElement('div');
-	var cls = CSS_PREFIX + 'size-monitor';
+	/*var cls = CSS_PREFIX + 'size-monitor';
 	var maxSize = 1000000;
 	var style =
 		'position:absolute;' +
@@ -10755,7 +10755,7 @@ function createResizer(handler) {
 		'</div>' +
 		'<div class="' + cls + '-shrink" style="' + style + '">' +
 			'<div style="' +
-				'position:absolute;' +
+				'position:absolute;' +																			LETS GOOOOOOO
 				'width:200%;' +
 				'height:200%;' +
 				'left:0; ' +
@@ -10779,7 +10779,7 @@ function createResizer(handler) {
 
 	addEventListener(expand, 'scroll', onScroll.bind(expand, 'expand'));
 	addEventListener(shrink, 'scroll', onScroll.bind(shrink, 'shrink'));
-
+*/
 	return resizer;
 }
 
@@ -10841,7 +10841,7 @@ function addResizeListener(node, listener, chart) {
 			}
 
 			// The container size might have changed, let's reset the resizer state.
-			resizer._reset();
+			//resizer._reset();																							JAMAUU
 		}
 	});
 }
