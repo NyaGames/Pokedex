@@ -20,23 +20,32 @@ var lista = function () {
 };	
  
 var informacion = function(){
+	var x = new XMLHttpRequest();
+	x.open("GET", "data/prueba.xml", true);
+	x.onreadystatechange = function () {
+	if (x.readyState == 4 && x.status == 200)
+	{
+		var doc = x.responseXML;
+		// …
+	}
+	};
+	x.send(null);
 	estadisticas();
 	debilidades();
 	fotillo();
 }
 var fotillo = function(){
-	var canvasFotillo = document.createElement('div');
-	canvasFotillo.id = 'canvasfotillo';
-	canvasFotillo.style.zIndex = 999;
-	canvasFotillo.style.position = 'absolute';
-	canvasFotillo.style.marginTop = 240;
-	canvasFotillo.style.marginLeft = document.documentElement.clientWidth - 935;
-
 	var numero = 403;
 	var fotillo = new Image();
+	fotillo.id = 'fotillo'
 	fotillo.src = 'assets/sprites/'+numero+'.png';
-	canvasFotillo.appendChild(fotillo)
-	document.body.appendChild(canvasFotillo);
+	fotillo.style.position = 'fixed';
+	fotillo.style.top = '45%';
+	fotillo.style.left = '50%';
+	fotillo.style.marginTop = -128;
+	fotillo.style.marginLeft = -128;
+	fotillo.style.zIndex = 999;
+	document.body.appendChild(fotillo);
 }
 var estadisticas = function () {
 	var nombre = "Shinx"
@@ -50,12 +59,14 @@ var estadisticas = function () {
 	canvasEstadisticas.id = 'estadisticas';
 	
 
-	canvasEstadisticas.style.width = 500;
-	canvasEstadisticas.style.height = 300;
-	canvasEstadisticas.style.position = 'absolute';
-	canvasEstadisticas.style.marginTop = 20;
+	canvasEstadisticas.style.width = 350;
+	canvasEstadisticas.style.height = 350;
+	canvasEstadisticas.style.position = 'fixed';
+	canvasEstadisticas.style.top = '17%';
+	canvasEstadisticas.style.left = '75%';
+	canvasEstadisticas.style.marginTop = -150;
+	canvasEstadisticas.style.marginLeft = -150;
 	canvasEstadisticas.style.zIndex = 1;
-	canvasEstadisticas.style.marginLeft = document.documentElement.clientWidth - 600;
 
 	document.body.appendChild(canvasEstadisticas);
 	var myChart = new Chart(canvasEstadisticas, {
@@ -108,11 +119,13 @@ var debilidades = function () {
 	canvasDebilidades.id = 'debilidades';
 
 
-	canvasDebilidades.style.marginTop = 150;
-	canvasDebilidades.style.marginLeft = 430;
-	canvasDebilidades.style.position = 'absolute';
+	canvasDebilidades.style.top = '75%';
+	canvasDebilidades.style.left = '75%';
+	canvasDebilidades.style.position = position = 'fixed';
 	canvasDebilidades.style.WebkitTransform = "scale(0.4,0.5)";
 	canvasDebilidades.style.zIndex = 0;
+	canvasDebilidades.style.marginTop = -550;
+	canvasDebilidades.style.marginLeft = -900;
 
 	document.body.appendChild(canvasDebilidades);
 
@@ -142,19 +155,20 @@ var debilidades = function () {
     		display: false
     	},
     	scales: {
+			xAxes: [{
+                ticks: {
+					fontSize: 24
+                }
+            }],
             yAxes: [{
                 ticks: {
 					beginAtZero:true,
 					min: 0,
 					max: 4,
+					fontSize: 24
                 }
             }]
         }
     }
 });
-
-	// Change the display size
-	//debilidades.resize(300, 200);
-	// Resync the render size
-	//debilidades.resize();	
 };
