@@ -20,19 +20,23 @@ var lista = function () {
 };	
  
 var informacion = function(){
-	var x = new XMLHttpRequest();
-	x.open("GET", "data/prueba.xml", true);
-	x.onreadystatechange = function () {
-	if (x.readyState == 4 && x.status == 200)
-	{
-		var doc = x.responseXML;
-		// …
-	}
-	};
-	x.send(null);
 	estadisticas();
 	debilidades();
 	fotillo();
+	info();
+}
+var info = function(){
+	var titulo_nombre = document.createElement('h1');
+	var nombre = "Shinx";
+	var titulo_japones = document.createElement('h2');
+	var nombre_japones = "Kolinkコリンク";
+	var numero = 403;
+	document.body.appendChild(titulo_nombre);	
+	document.body.appendChild(titulo_japones);	
+	$(document).ready(function(){
+		  $("h1").text(nombre);
+		  $("h2").text(nombre_japones);
+	});
 }
 var fotillo = function(){
 	var numero = 403;
