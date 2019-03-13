@@ -30,17 +30,38 @@ var informacion = function(){
 	fotillo();
 	info();
 }
-var info = function(){
+var info = function(){	
 	var titulo_nombre = document.createElement('h1');
 	var nombre = "Shinx";
+	titulo_nombre.id = "titulo_nombre"
+	titulo_nombre.style.position = 'fixed';
+	titulo_nombre.style.left = '49%';
+	titulo_nombre.style.top = '27%';
 	var titulo_japones = document.createElement('h2');
 	var nombre_japones = "Kolinkコリンク";
-	var numero = 403;
+	titulo_japones.id = "titulo_japones"
+	titulo_japones.style.position = 'fixed';
+	titulo_japones.style.left = '47%';
+	titulo_japones.style.top = '55%';		
+	var titulo_numero = document.createElement('h1');
+	titulo_numero.id = "titulo_numero"
+	titulo_numero.style.position = 'fixed';
+	titulo_numero.style.left = '49%';
+	titulo_numero.style.top = '22%';
+	var numero = "#" +403;
+	var titulo_clasificacion = document.createElement('h2');
+	var clasificacion = "Kolinkコリンク";
+	titulo_clasificacion.id = "titulo_japones"
+	titulo_clasificacion.style.position = 'fixed';
+	titulo_clasificacion.style.left = '47%';
+	titulo_clasificacion.style.top = '55%';		
 	document.body.appendChild(titulo_nombre);	
 	document.body.appendChild(titulo_japones);	
+	document.body.appendChild(titulo_numero);
 	$(document).ready(function(){
-		  $("h1").text(nombre);
-		  $("h2").text(nombre_japones);
+		  $("#titulo_nombre").text(nombre);
+		  $("#titulo_numero").text(numero);
+		  $("#titulo_japones").text(nombre_japones);
 	});
 }
 var fotillo = function(){
@@ -184,7 +205,7 @@ var debilidades = function () {
 	agua.id = 'agua'
 	agua.src = 'assets/tipos/agua.png';
 
-	canvasDebilidades.style.top = '75%';
+	canvasDebilidades.style.top = '77%';
 	canvasDebilidades.style.left = '75%';
 	canvasDebilidades.style.position = position = 'fixed';
 	canvasDebilidades.style.WebkitTransform = "scale(0.4,0.5)";
