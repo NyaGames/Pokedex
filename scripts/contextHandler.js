@@ -30,38 +30,49 @@ var informacion = function(){
 	fotillo();
 	info();
 }
+
+
 var info = function(){	
 	var titulo_nombre = document.createElement('h1');
 	var nombre = "Shinx";
 	titulo_nombre.id = "titulo_nombre"
 	titulo_nombre.style.position = 'fixed';
-	titulo_nombre.style.left = '49%';
-	titulo_nombre.style.top = '27%';
+	titulo_nombre.style.fontSize= 150;
+	titulo_nombre.style.color= "yellow";
+	titulo_nombre.style.left = '42%';
+	titulo_nombre.style.top = '-9%';
 	var titulo_japones = document.createElement('h2');
 	var nombre_japones = "Kolinkコリンク";
 	titulo_japones.id = "titulo_japones"
 	titulo_japones.style.position = 'fixed';
+
+	titulo_japones.style.color= "pink";
 	titulo_japones.style.left = '47%';
-	titulo_japones.style.top = '55%';		
+	titulo_japones.style.top = '60%';		
 	var titulo_numero = document.createElement('h1');
 	titulo_numero.id = "titulo_numero"
 	titulo_numero.style.position = 'fixed';
-	titulo_numero.style.left = '49%';
-	titulo_numero.style.top = '22%';
+	titulo_numero.style.fontSize= 200;
+	titulo_numero.style.color= "#BED5D8";
+	titulo_numero.style.left = '40%';
+	titulo_numero.style.top = '3%';
 	var numero = "#" +403;
 	var titulo_clasificacion = document.createElement('h2');
-	var clasificacion = "Kolinkコリンク";
-	titulo_clasificacion.id = "titulo_japones"
+	var clasificacion = "Pokemon Monisimo";
+	titulo_clasificacion.id = "titulo_clasificacion";
 	titulo_clasificacion.style.position = 'fixed';
-	titulo_clasificacion.style.left = '47%';
-	titulo_clasificacion.style.top = '55%';		
+	titulo_clasificacion.style.color= "orange";
+	titulo_clasificacion.style.left = '46%';
+	titulo_clasificacion.style.top = '17%';		
 	document.body.appendChild(titulo_nombre);	
 	document.body.appendChild(titulo_japones);	
 	document.body.appendChild(titulo_numero);
+	document.body.appendChild(titulo_clasificacion);
 	$(document).ready(function(){
 		  $("#titulo_nombre").text(nombre);
 		  $("#titulo_numero").text(numero);
 		  $("#titulo_japones").text(nombre_japones);
+		  $("#titulo_clasificacion").text(clasificacion);
 	});
 }
 var fotillo = function(){
@@ -70,7 +81,7 @@ var fotillo = function(){
 	fotillo.id = 'fotillo'
 	fotillo.src = 'assets/sprites/'+numero+'.png';
 	fotillo.style.position = 'fixed';
-	fotillo.style.top = '45%';
+	fotillo.style.top = '50%';
 	fotillo.style.left = '50%';
 	fotillo.style.marginTop = -128;
 	fotillo.style.marginLeft = -128;
