@@ -20,11 +20,6 @@ var lista = function () {
 };	
  
 var informacion = function(){
-	var data = $.ajax({
-		dataType: "json",
-		url: "data/pokemon.json",
-		data: data
-	  });
 	estadisticas();
 	debilidades();
 	fotillo();
@@ -41,38 +36,96 @@ var info = function(){
 	titulo_nombre.style.color= "yellow";
 	titulo_nombre.style.left = '42%';
 	titulo_nombre.style.top = '-9%';
+
 	var titulo_japones = document.createElement('h2');
 	var nombre_japones = "Kolinkコリンク";
 	titulo_japones.id = "titulo_japones"
 	titulo_japones.style.position = 'fixed';
-
 	titulo_japones.style.color= "pink";
 	titulo_japones.style.left = '47%';
-	titulo_japones.style.top = '60%';		
-	var titulo_numero = document.createElement('h1');
+	titulo_japones.style.top = '60%';
+
+	var titulo_numero = document.createElement('h1');	
+	var numero = "#" +403;
 	titulo_numero.id = "titulo_numero"
 	titulo_numero.style.position = 'fixed';
 	titulo_numero.style.fontSize= 200;
 	titulo_numero.style.color= "#BED5D8";
 	titulo_numero.style.left = '40%';
 	titulo_numero.style.top = '3%';
-	var numero = "#" +403;
+
 	var titulo_clasificacion = document.createElement('h2');
 	var clasificacion = "Pokemon Monisimo";
 	titulo_clasificacion.id = "titulo_clasificacion";
 	titulo_clasificacion.style.position = 'fixed';
 	titulo_clasificacion.style.color= "orange";
 	titulo_clasificacion.style.left = '46%';
-	titulo_clasificacion.style.top = '17%';		
+	titulo_clasificacion.style.top = '17%';	
+
+	var titulo_pasos = document.createElement('h3');
+	var pasos = "Pasos para eclosionar: "+5120;
+	titulo_pasos.id = "titulo_pasos";
+
+	var titulo_amistad = document.createElement('h3');
+	var amistad = "Amistad base: "+70;
+	titulo_amistad.id = "titulo_amistad";
+
+	var titulo_captura = document.createElement('h3');
+	var captura = "Ratio de captura: "+235;
+	titulo_captura.id = "titulo_captura";
+
+	var titulo_experiencia = document.createElement('h3');
+	var experiencia = "Experiencia para nivel 100: "+1059860;
+	titulo_experiencia.id = "titulo_experiencia";
+
+	var titulo_altura = document.createElement('h3');
+	var altura = "Altura (m): "+0.5;
+	titulo_altura.id = "titulo_altura";
+
+	var titulo_peso = document.createElement('h3');
+	var peso = "Peso (kg): "+9.5;
+	titulo_peso.id = "titulo_peso";
+
+	var titulo_genero = document.createElement('h3');
+	var genero = "Probabilidad macho: "+0.5+ ",   Probabilidad hembra: "+(1-0.5);
+	titulo_genero.id = "titulo_genero";
+
+	var titulo_tipo = document.createElement('h3');
+	var tipo = "Tipo 1: "+"Eléctrico"+ ",  Tipo 2: "+ "";
+	titulo_tipo.id = "titulo_tipo";
+
+	var titulo_competitivo = document.createElement('h3');
+	var competitivo = "Tier: "+"LC"+ ",  Rol: "+ "Sweeper";
+	titulo_competitivo.id = "titulo_competitivo";
+
 	document.body.appendChild(titulo_nombre);	
 	document.body.appendChild(titulo_japones);	
 	document.body.appendChild(titulo_numero);
 	document.body.appendChild(titulo_clasificacion);
+	document.body.appendChild(titulo_pasos);
+	document.body.appendChild(titulo_amistad);
+	document.body.appendChild(titulo_captura);
+	document.body.appendChild(titulo_experiencia);
+	document.body.appendChild(titulo_altura);
+	document.body.appendChild(titulo_peso);
+	document.body.appendChild(titulo_genero);
+	document.body.appendChild(titulo_tipo);
+	document.body.appendChild(titulo_competitivo);
+
 	$(document).ready(function(){
 		  $("#titulo_nombre").text(nombre);
 		  $("#titulo_numero").text(numero);
 		  $("#titulo_japones").text(nombre_japones);
 		  $("#titulo_clasificacion").text(clasificacion);
+		  $("#titulo_pasos").text(pasos);
+		  $("#titulo_amistad").text(amistad);
+		  $("#titulo_captura").text(captura);
+		  $("#titulo_experiencia").text(experiencia);
+		  $("#titulo_altura").text(altura);
+		  $("#titulo_peso").text(peso);
+		  $("#titulo_genero").text(genero);
+		  $("#titulo_tipo").text(tipo);
+		  $("#titulo_competitivo").text(competitivo);
 	});
 }
 var fotillo = function(){
@@ -96,10 +149,9 @@ var estadisticas = function () {
 	var speed_stat = 40
 	var sp_deffense_stat = 34
 	var sp_attack_stat = 45
+
 	var canvasEstadisticas = document.createElement('canvas');
 	canvasEstadisticas.id = 'estadisticas';
-	
-
 	canvasEstadisticas.style.width = 350;
 	canvasEstadisticas.style.height = 350;
 	canvasEstadisticas.style.position = 'fixed';
@@ -109,7 +161,19 @@ var estadisticas = function () {
 	canvasEstadisticas.style.marginLeft = -150;
 	canvasEstadisticas.style.zIndex = 1;
 
+	var titulo_estadisticas = document.createElement('h3');
+	var base_estadisticas = "Estadisticas base: "+263;
+	titulo_estadisticas.id = "titulo_estadisticas";
+	titulo_estadisticas.style.position = 'fixed';
+	titulo_estadisticas.style.top = '37%';
+	titulo_estadisticas.style.left = '73%';
+	titulo_estadisticas.style.zIndex = 2;
+	$(document).ready(function(){
+		$("#titulo_estadisticas").text(base_estadisticas);
+  	});
+
 	document.body.appendChild(canvasEstadisticas);
+	document.body.appendChild(titulo_estadisticas);
 	var myChart = new Chart(canvasEstadisticas, {
 		type: 'radar',
 		data: {

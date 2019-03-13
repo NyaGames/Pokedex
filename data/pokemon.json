@@ -19132,8 +19132,8 @@
     "weight_kg": 9.5,
     "generation": 4,
     "is_legendary": 0,
-    "form": "base",
-    "use": "",
+    "form": "Base",
+    "use": "Sweeper",
     "tier": "LC"
   },
   {
