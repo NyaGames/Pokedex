@@ -20,6 +20,11 @@ var lista = function () {
 };	
  
 var informacion = function(){
+	var data = $.ajax({
+		dataType: "json",
+		url: "data/pokemon.json",
+		data: data
+	  });
 	estadisticas();
 	debilidades();
 	fotillo();
@@ -122,6 +127,62 @@ var debilidades = function () {
 	var canvasDebilidades = document.createElement('canvas');
 	canvasDebilidades.id = 'debilidades';
 
+	var bicho = new Image();
+	bicho.id = 'bicho'
+	bicho.src = 'assets/tipos/bicho.png';
+	bicho.style.width = 25;
+	bicho.style.height = 25;
+	var siniestro = new Image();
+	siniestro.id = 'siniestro'
+	siniestro.src = 'assets/tipos/siniestro.png';
+	var dragon = new Image();
+	dragon.id = 'dragon'
+	dragon.src = 'assets/tipos/dragon.png';
+	var electrico = new Image();
+	electrico.id = 'electrico'
+	electrico.src = 'assets/tipos/electrico.png';
+	var hada = new Image();
+	hada.id = 'hada'
+	hada.src = 'assets/tipos/hada.png';
+	var lucha = new Image();
+	lucha.id = 'lucha'
+	lucha.src = 'assets/tipos/lucha.png';
+	var fuego = new Image();
+	fuego.id = 'fuego'
+	fuego.src = 'assets/tipos/fuego.png';
+	var volador = new Image();
+	volador.id = 'volador'
+	volador.src = 'assets/tipos/volador.png';
+	var fantasma = new Image();
+	fantasma.id = 'fantasma'
+	fantasma.src = 'assets/tipos/fantasma.png';
+	var planta = new Image();
+	planta.id = 'planta'
+	planta.src = 'assets/tipos/planta.png';
+	var tierra = new Image();
+	tierra.id = 'tierra'
+	tierra.src = 'assets/tipos/tierra.png';
+	var hielo = new Image();
+	hielo.id = 'hielo'
+	hielo.src = 'assets/tipos/hielo.png';
+	var normal = new Image();
+	normal.id = 'normal'
+	normal.src = 'assets/tipos/normal.png';
+	var veneno = new Image();
+	veneno.id = 'veneno'
+	veneno.src = 'assets/tipos/veneno.png';
+	var psiquico = new Image();
+	psiquico.id = 'psiquico'
+	psiquico.src = 'assets/tipos/psiquico.png';
+	var roca = new Image();
+	roca.id = 'roca'
+	roca.src = 'assets/tipos/roca.png';
+	var acero = new Image();
+	acero.id = 'acero'
+	acero.src = 'assets/tipos/acero.png';
+	var agua = new Image();
+	agua.id = 'agua'
+	agua.src = 'assets/tipos/agua.png';
 
 	canvasDebilidades.style.top = '75%';
 	canvasDebilidades.style.left = '75%';
@@ -132,7 +193,6 @@ var debilidades = function () {
 	canvasDebilidades.style.marginLeft = -900;
 
 	document.body.appendChild(canvasDebilidades);
-
 	var myChart2 = new Chart(canvasDebilidades, {
 		type: 'line',
     data: {
@@ -146,7 +206,27 @@ var debilidades = function () {
                 'rgba(255,99,132,1)',
             ],
 			borderWidth: 1,
-			pointRadius: 7
+			pointRadius: 7,
+			pointStyle:[
+				bicho,
+				siniestro,
+				dragon,
+				electrico,
+				hada,
+				lucha,
+				fuego,
+				volador,
+				fantasma,
+				planta,
+				tierra,
+				hielo,
+				normal,
+				veneno,
+				psiquico,
+				roca,
+				acero,
+				agua
+			]
         }]
     },
     options: {
@@ -161,7 +241,8 @@ var debilidades = function () {
     	scales: {
 			xAxes: [{
                 ticks: {
-					fontSize: 24
+					fontSize: 24,
+					display: false
                 }
             }],
             yAxes: [{
@@ -172,7 +253,7 @@ var debilidades = function () {
 					fontSize: 24
                 }
             }]
-        }
+		}
     }
 });
 };

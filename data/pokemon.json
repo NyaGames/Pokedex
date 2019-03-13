@@ -1,5 +1,5 @@
-[
-  {
+{
+  "pokemon": [{
     "abilities": "['Overgrow', 'Chlorophyll']",
     "against_bug": 1,
     "against_dark": 1,
@@ -37808,5 +37808,5 @@
     "generation": 7,
     "is_legendary": 1,
     "form": 1
-  }
-]
+  }]
+}
