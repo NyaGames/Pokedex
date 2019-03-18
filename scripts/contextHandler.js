@@ -27,7 +27,17 @@ var informacion = function(){
 }
 
 
-var info = function(){	
+var info = function(){		
+	var canvasInfo = document.createElement('canvas');
+	canvasInfo.id = 'info';
+	canvasInfo.style.position = 'fixed';
+	canvasInfo.style.top = '17%';
+	canvasInfo.style.left = '9%';
+	canvasInfo.style.height = 900;
+	canvasInfo.style.marginTop = -150;
+	canvasInfo.style.marginLeft = -150;
+	canvasInfo.style.zIndex = 1;
+
 	var titulo_nombre = document.createElement('h1');
 	var nombre = "Shinx";
 	titulo_nombre.id = "titulo_nombre"
@@ -62,9 +72,10 @@ var info = function(){
 	titulo_clasificacion.style.left = '46%';
 	titulo_clasificacion.style.top = '17%';	
 
-	var titulo_pasos = document.createElement('h3');
-	var pasos = "Pasos para eclosionar: "+5120;
-	titulo_pasos.id = "titulo_pasos";
+	var huevo = new Image();
+	huevo.id = 'huevo'
+	huevo.src = 'assets/huevo.png';
+	var pasos =" : " +5120;
 
 	var titulo_amistad = document.createElement('h3');
 	var amistad = "Amistad base: "+70;
@@ -98,35 +109,11 @@ var info = function(){
 	var competitivo = "Tier: "+"LC"+ ",  Rol: "+ "Sweeper";
 	titulo_competitivo.id = "titulo_competitivo";
 
-	document.body.appendChild(titulo_nombre);	
-	document.body.appendChild(titulo_japones);	
-	document.body.appendChild(titulo_numero);
-	document.body.appendChild(titulo_clasificacion);
-	document.body.appendChild(titulo_pasos);
-	document.body.appendChild(titulo_amistad);
-	document.body.appendChild(titulo_captura);
-	document.body.appendChild(titulo_experiencia);
-	document.body.appendChild(titulo_altura);
-	document.body.appendChild(titulo_peso);
-	document.body.appendChild(titulo_genero);
-	document.body.appendChild(titulo_tipo);
-	document.body.appendChild(titulo_competitivo);
-
-	$(document).ready(function(){
-		  $("#titulo_nombre").text(nombre);
-		  $("#titulo_numero").text(numero);
-		  $("#titulo_japones").text(nombre_japones);
-		  $("#titulo_clasificacion").text(clasificacion);
-		  $("#titulo_pasos").text(pasos);
-		  $("#titulo_amistad").text(amistad);
-		  $("#titulo_captura").text(captura);
-		  $("#titulo_experiencia").text(experiencia);
-		  $("#titulo_altura").text(altura);
-		  $("#titulo_peso").text(peso);
-		  $("#titulo_genero").text(genero);
-		  $("#titulo_tipo").text(tipo);
-		  $("#titulo_competitivo").text(competitivo);
-	});
+	document.body.appendChild(canvasInfo);	
+	$(canvasInfo).ready(function(){
+		var ctx = canvasInfo.getContext("2d");
+		ctx.drawImage(huevo,0,20,huevo.width,huevo.height,0,0,canvasInfo.width/100,canvasInfo.height/100);
+  	});
 }
 var fotillo = function(){
 	var numero = 403;
