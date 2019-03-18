@@ -28,16 +28,6 @@ var informacion = function(){
 
 
 var info = function(){		
-	var canvasInfo = document.createElement('canvas');
-	canvasInfo.id = 'info';
-	canvasInfo.style.position = 'fixed';
-	canvasInfo.style.top = '17%';
-	canvasInfo.style.left = '9%';
-	canvasInfo.style.height = 900;
-	canvasInfo.style.marginTop = -150;
-	canvasInfo.style.marginLeft = -150;
-	canvasInfo.style.zIndex = 1;
-
 	var titulo_nombre = document.createElement('h1');
 	var nombre = "Shinx";
 	titulo_nombre.id = "titulo_nombre"
@@ -74,33 +64,88 @@ var info = function(){
 
 	var huevo = new Image();
 	huevo.id = 'huevo'
-	huevo.src = 'assets/huevo.png';
+	huevo.src = 'assets/info/huevo.png';
 	var pasos =" : " +5120;
+	var canvasPasos = document.createElement('canvas');
+	canvasPasos.id = 'cPasos';
+	canvasPasos.style.position = 'fixed';
+	canvasPasos.style.top = '17%';
+	canvasPasos.style.left = '9%';
+	canvasPasos.style.marginTop = -150;
+	canvasPasos.style.marginLeft = -150;
+	canvasPasos.style.zIndex = 1;
+	var huellas = new Image();
+	huellas.id = 'huellas'
+	huellas.src = 'assets/info/huellas.png';
+	
+	var corazoncillo = new Image();
+	corazoncillo.id = 'corazoncillo'
+	corazoncillo.src = 'assets/info/amistad.png';
+	var amistad = " : "+70;
+	var canvasAmistad = document.createElement('canvas');
+	canvasAmistad.id = 'cAmistad';
+	canvasAmistad.style.position = 'fixed';
+	canvasAmistad.style.top = '25%';
+	canvasAmistad.style.left = '9%';
+	canvasAmistad.style.marginTop = -150;
+	canvasAmistad.style.marginLeft = -150;
+	canvasAmistad.style.zIndex = 1;
 
-	var titulo_amistad = document.createElement('h3');
-	var amistad = "Amistad base: "+70;
-	titulo_amistad.id = "titulo_amistad";
+	var captura = new Image();
+	captura.id = 'captura'
+	captura.src = 'assets/info/captura.png';
+	var ratiocaptura = " : "+235;
+	var canvasCaptura = document.createElement('canvas');
+	canvasCaptura.id = 'cCaptura';
+	canvasCaptura.style.position = 'fixed';
+	canvasCaptura.style.top = '30%';
+	canvasCaptura.style.left = '9%';
+	canvasCaptura.style.marginTop = -150;
+	canvasCaptura.style.marginLeft = -150;
+	canvasCaptura.style.zIndex = 1;
 
-	var titulo_captura = document.createElement('h3');
-	var captura = "Ratio de captura: "+235;
-	titulo_captura.id = "titulo_captura";
+	
+	var exp = new Image();
+	exp.id = 'exp'
+	exp.src = 'assets/info/exp.png';
+	var experiencia = " : "+1059860;
+	var canvasExperiencia = document.createElement('canvas');
+	canvasExperiencia.id = 'cExperiencia';
+	canvasExperiencia.style.position = 'fixed';
+	canvasExperiencia.style.top = '37%';
+	canvasExperiencia.style.left = '9%';
+	canvasExperiencia.style.marginTop = -150;
+	canvasExperiencia.style.marginLeft = -150;
+	canvasExperiencia.style.zIndex = 1;
 
-	var titulo_experiencia = document.createElement('h3');
-	var experiencia = "Experiencia para nivel 100: "+1059860;
-	titulo_experiencia.id = "titulo_experiencia";
+	var cosademedir = new Image();
+	cosademedir.id = 'cosademedir'
+	cosademedir.src = 'assets/info/altura.png';
+	var altura = " : "+0.5;
+	var canvasAltura = document.createElement('canvas');
+	canvasAltura.id = 'cAltura';
+	canvasAltura.style.position = 'fixed';
+	canvasAltura.style.top = '45%';
+	canvasAltura.style.left = '9%';
+	canvasAltura.style.marginTop = -150;
+	canvasAltura.style.marginLeft = -150;
+	canvasAltura.style.zIndex = 1;
 
-	var titulo_altura = document.createElement('h3');
-	var altura = "Altura (m): "+0.5;
-	titulo_altura.id = "titulo_altura";
+	var cosadepesar = new Image();
+	cosadepesar.id = 'cosadepesar'
+	cosadepesar.src = 'assets/info/peso.png';
+	var peso = " : "+9.5;
+	var canvasPeso = document.createElement('canvas');
+	canvasPeso.id = 'cPeso';
+	canvasPeso.style.position = 'fixed';
+	canvasPeso.style.top = '53%';
+	canvasPeso.style.left = '9%';
+	canvasPeso.style.marginTop = -150;
+	canvasPeso.style.marginLeft = -150;
+	canvasPeso.style.zIndex = 1;
 
-	var titulo_peso = document.createElement('h3');
-	var peso = "Peso (kg): "+9.5;
-	titulo_peso.id = "titulo_peso";
-
-	var titulo_genero = document.createElement('h3');
 	var genero = "Probabilidad macho: "+0.5+ ",   Probabilidad hembra: "+(1-0.5);
-	titulo_genero.id = "titulo_genero";
-
+	
 	var titulo_tipo = document.createElement('h3');
 	var tipo = "Tipo 1: "+"Eléctrico"+ ",  Tipo 2: "+ "";
 	titulo_tipo.id = "titulo_tipo";
@@ -109,11 +154,59 @@ var info = function(){
 	var competitivo = "Tier: "+"LC"+ ",  Rol: "+ "Sweeper";
 	titulo_competitivo.id = "titulo_competitivo";
 
-	document.body.appendChild(canvasInfo);	
-	$(canvasInfo).ready(function(){
-		var ctx = canvasInfo.getContext("2d");
-		ctx.drawImage(huevo,0,20,huevo.width,huevo.height,0,0,canvasInfo.width/100,canvasInfo.height/100);
-  	});
+	document.body.appendChild(canvasCaptura);	
+	$(canvasCaptura).ready(function(){
+		var ctx = canvasCaptura.getContext("2d");
+		ctx.drawImage(captura,0,0);
+		ctx.font = "30px Arial"
+		ctx.fillText(ratiocaptura, 60, 73)		
+	  });
+	document.body.appendChild(canvasPasos);	
+	$(canvasPasos).ready(function(){
+	  var ctx = canvasPasos.getContext("2d");
+	  ctx.drawImage(huevo,10,40, 35, 46);
+	  ctx.font = "30px Arial"
+	  ctx.fillText(pasos, 60, 73)		
+	  ctx.drawImage(huellas,165, 40, 35, 46);
+	});
+	document.body.appendChild(canvasAmistad);	
+	$(canvasAmistad).ready(function(){
+		var ctx = canvasAmistad.getContext("2d");
+		ctx.drawImage(corazoncillo,10,40, 35, 35);
+		ctx.font = "30px Arial"
+		ctx.fillText(amistad, 60, 65)
+	  });
+	  document.body.appendChild(canvasExperiencia);	
+	  $(canvasExperiencia).ready(function(){
+		  var ctx = canvasExperiencia.getContext("2d");
+		  ctx.drawImage(exp,10,40, 35, 35);
+		  ctx.font = "30px Arial"
+		  ctx.fillText(experiencia, 60, 73)		
+		});
+	document.body.appendChild(canvasAltura);	
+	$(canvasAltura).ready(function(){
+		var ctx = canvasAltura.getContext("2d");
+		ctx.drawImage(cosademedir,10,40, 35, 35);
+		ctx.font = "30px Arial"
+		ctx.fillText(altura, 60, 73)		
+	});
+	document.body.appendChild(canvasPeso);	
+	$(canvasPeso).ready(function(){
+		var ctx = canvasPeso.getContext("2d");
+		ctx.drawImage(cosadepesar,10,40, 35, 35);
+		ctx.font = "30px Arial"
+		ctx.fillText(peso, 60, 73)		
+	});
+	  document.body.appendChild(titulo_nombre);	
+		document.body.appendChild(titulo_japones);	
+		document.body.appendChild(titulo_numero);
+		document.body.appendChild(titulo_clasificacion);
+	  $(document).ready(function(){
+		$("#titulo_nombre").text(nombre);
+		$("#titulo_numero").text(numero);
+		$("#titulo_japones").text(nombre_japones);
+		$("#titulo_clasificacion").text(clasificacion);
+  });
 }
 var fotillo = function(){
 	var numero = 403;
