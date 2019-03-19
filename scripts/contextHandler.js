@@ -14,9 +14,54 @@ var inicio = function () {
     };
 };
  
+
+function scrolleameEsta(){
+	var elmnt = document.getElementsByClassName("contenedor");
+  var x = elmnt.scrollLeft;
+  var y = elmnt.scrollTop;
+};
+
 var lista = function () {
-	document.body.style.backgroundImage = "";
-	document.getElementById("pokiball").remove();
+	var cosadelistas = document.createElement('div');
+	cosadelistas.className = "columnas";
+	cosadelistas.style.display = "flex";
+	document.body.appendChild(cosadelistas);
+	var cosadebuscar = document.createElement('div');
+	cosadebuscar.className = "buscador";
+	cosadebuscar.style.backgroundColor = "#bbb";
+	cosadebuscar.style.flex = "35%";
+	cosadebuscar.style.paddingTop = "15";
+	cosadebuscar.style.paddingRight = "0";
+	cosadelistas.appendChild(cosadebuscar);
+	var cosademostrar = document.createElement('div');
+	cosademostrar.className = "lista";
+	cosademostrar.style.height = "1000";
+	cosademostrar.style.overflow = "auto";	
+	cosademostrar.onscroll = scrolleameEsta();
+	//cosademostrar.style.backgroundColor = "#ddd";
+	cosademostrar.style.flex = "65%";
+	cosademostrar.style.paddingTop = "15";
+	cosademostrar.style.paddingRight = "0";
+	cosadelistas.appendChild(cosademostrar);
+	var lista = document.createElement('div');
+	lista.className = "contenedor";
+	lista.style.height = "3000"
+	for (let index = 0; index < 804; index++) {	
+		var botoncillo = document.createElement('div');
+		botoncillo.className = "boton";
+		botoncillo.id = index +1;
+		botoncillo.style.backgroundColor = "grey";
+		botoncillo.style.height = "200";
+		botoncillo.style.width = "200";
+		botoncillo.style.padding = "10";
+		botoncillo.style.margin = "10";
+		botoncillo.style.textAlign = "center";
+		botoncillo.style.color = "white";
+		botoncillo.style.overflow = "wrap";	
+		botoncillo.style.float = "left";
+		lista.appendChild(botoncillo);		
+	}
+	cosademostrar.appendChild(lista);
 };	
  
 var informacion = function(){
@@ -26,8 +71,61 @@ var informacion = function(){
 	info();
 }
 
-
 var info = function(){		
+	var bicho = new Image();
+	bicho.id = 'bicho'
+	bicho.src = 'assets/TiposGrande/bicho.png';
+	var siniestro = new Image();
+	siniestro.id = 'siniestro'
+	siniestro.src = 'assets/TiposGrande/siniestro.png';
+	var dragon = new Image();
+	dragon.id = 'dragon'
+	dragon.src = 'assets/TiposGrande/dragon.png';
+	var electrico = new Image();
+	electrico.id = 'electrico'
+	electrico.src = 'assets/TiposGrande/electrico.png';
+	var hada = new Image();
+	hada.id = 'hada'
+	hada.src = 'assets/TiposGrande/hada.png';
+	var lucha = new Image();
+	lucha.id = 'lucha'
+	lucha.src = 'assets/TiposGrande/lucha.png';
+	var fuego = new Image();
+	fuego.id = 'fuego'
+	fuego.src = 'assets/TiposGrande/fuego.png';
+	var volador = new Image();
+	volador.id = 'volador'
+	volador.src = 'assets/TiposGrande/volador.png';
+	var fantasma = new Image();
+	fantasma.id = 'fantasma'
+	fantasma.src = 'assets/TiposGrande/fantasma.png';
+	var planta = new Image();
+	planta.id = 'planta'
+	planta.src = 'assets/TiposGrande/planta.png';
+	var tierra = new Image();
+	tierra.id = 'tierra'
+	tierra.src = 'assets/TiposGrande/tierra.png';
+	var hielo = new Image();
+	hielo.id = 'hielo'
+	hielo.src = 'assets/TiposGrande/hielo.png';
+	var normal = new Image();
+	normal.id = 'normal'
+	normal.src = 'assets/TiposGrande/normal.png';
+	var veneno = new Image();
+	veneno.id = 'veneno'
+	veneno.src = 'assets/TiposGrande/veneno.png';
+	var psiquico = new Image();
+	psiquico.id = 'psiquico'
+	psiquico.src = 'assets/TiposGrande/psiquico.png';
+	var roca = new Image();
+	roca.id = 'roca'
+	roca.src = 'assets/TiposGrande/roca.png';
+	var acero = new Image();
+	acero.id = 'acero'
+	acero.src = 'assets/TiposGrande/acero.png';
+	var agua = new Image();
+	agua.id = 'agua'
+	agua.src = 'assets/TiposGrande/agua.png';
 	var titulo_nombre = document.createElement('h1');
 	var nombre = "Shinx";
 	titulo_nombre.id = "titulo_nombre"
@@ -143,21 +241,54 @@ var info = function(){
 	canvasPeso.style.marginTop = -150;
 	canvasPeso.style.marginLeft = -150;
 	canvasPeso.style.zIndex = 1;
-
-	var genero = "Probabilidad macho: "+0.5+ ",   Probabilidad hembra: "+(1-0.5);
 	
-	var titulo_tipo = document.createElement('h3');
-	var tipo = "Tipo 1: "+"Eléctrico"+ ",  Tipo 2: "+ "";
-	titulo_tipo.id = "titulo_tipo";
+	var masculino = new Image();
+	masculino.id = 'masculino'
+	masculino.src = 'assets/info/macho.png'
+	var femenino = new Image();
+	femenino.id = 'femenino'
+	femenino.src = 'assets/info/hembra.png'
+	var genero = " : "+0.5+ ",         	: "+(1-0.5);
+	var canvasGenero = document.createElement('canvas');
+	canvasGenero.id = 'cGenero';
+	canvasGenero.style.position = 'fixed';
+	canvasGenero.style.top = '61%';
+	canvasGenero.style.left = '9%';
+	canvasGenero.style.marginTop = -150;
+	canvasGenero.style.marginLeft = -150;
+	canvasGenero.style.zIndex = 1;
+	
 
-	var titulo_competitivo = document.createElement('h3');
-	var competitivo = "Tier: "+"LC"+ ",  Rol: "+ "Sweeper";
-	titulo_competitivo.id = "titulo_competitivo";
+	var tipo = "Tipo 1:        Tipo 2: ";
+	var canvasTipos = document.createElement('canvas');
+	canvasTipos.id = 'cTipo';
+	canvasTipos.style.position = 'fixed';
+	canvasTipos.style.top = '69%';
+	canvasTipos.style.left = '9%';
+	canvasTipos.style.marginTop = -150;
+	canvasTipos.style.marginLeft = -150;
+	canvasTipos.style.zIndex = 1;
+
+	var tier = new Image();
+	tier.id = 'tier'
+	tier.src = 'assets/info/tier.png'
+	var rol = new Image();
+	rol.id = 'rol'
+	rol.src = 'assets/info/rol.png'
+	var competitivo = " : "+"LC"+ ",       :"+ "Sweeper";
+	var canvasCompetitivo = document.createElement('canvas');
+	canvasCompetitivo.id = 'cCompetitivo';
+	canvasCompetitivo.style.position = 'fixed';
+	canvasCompetitivo.style.top = '77%';
+	canvasCompetitivo.style.left = '9%';
+	canvasCompetitivo.style.marginTop = -150;
+	canvasCompetitivo.style.marginLeft = -150;
+	canvasCompetitivo.style.zIndex = 1;
 
 	document.body.appendChild(canvasCaptura);	
 	$(canvasCaptura).ready(function(){
 		var ctx = canvasCaptura.getContext("2d");
-		ctx.drawImage(captura,0,0);
+		ctx.drawImage(captura,10,40, 35, 35);
 		ctx.font = "30px Arial"
 		ctx.fillText(ratiocaptura, 60, 73)		
 	  });
@@ -196,6 +327,29 @@ var info = function(){
 		ctx.drawImage(cosadepesar,10,40, 35, 35);
 		ctx.font = "30px Arial"
 		ctx.fillText(peso, 60, 73)		
+	});
+	document.body.appendChild(canvasGenero);	
+	$(canvasGenero).ready(function(){
+		var ctx = canvasGenero.getContext("2d");
+		ctx.drawImage(masculino,10,40, 35, 35);
+		ctx.font = "30px Arial"
+		ctx.fillText(genero, 60, 73)
+		ctx.drawImage(femenino,165,40, 35, 46);		
+	});
+	document.body.appendChild(canvasTipos);
+	$(canvasTipos).ready(function(){
+		var ctx = canvasTipos.getContext("2d");
+		ctx.drawImage(electrico,120,40, 35, 35);
+		ctx.font = "30px Arial"
+		ctx.fillText(tipo, 10, 73)		
+	});
+	document.body.appendChild(canvasCompetitivo);
+	$(canvasCompetitivo).ready(function(){
+		var ctx = canvasCompetitivo.getContext("2d");
+		ctx.drawImage(tier,10,40, 35, 46);
+		ctx.font = "30px Arial"
+		ctx.fillText(competitivo, 45, 73)		
+		ctx.drawImage(rol,125, 40, 45, 45);
 	});
 	  document.body.appendChild(titulo_nombre);	
 		document.body.appendChild(titulo_japones);	
@@ -276,7 +430,10 @@ var estadisticas = function () {
 				ticks:{
 					min: 0,
 				}
-			}			
+			},			
+			yAxes: {
+				display: false,
+			},		
 		}
 	});
 };
