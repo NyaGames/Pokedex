@@ -14,6 +14,9 @@ var inicio = function () {
     };
 };
  
+function buscameEsta(id){
+		informacion(id)
+};
 
 function scrolleameEsta(){
 	var elmnt = document.getElementsByClassName("contenedor");
@@ -36,9 +39,8 @@ var lista = function () {
 	var cosademostrar = document.createElement('div');
 	cosademostrar.className = "lista";
 	cosademostrar.style.height = "1000";
-	cosademostrar.style.overflow = "auto";	
+	cosademostrar.style.overflow = "scroll";	
 	cosademostrar.onscroll = scrolleameEsta();
-	//cosademostrar.style.backgroundColor = "#ddd";
 	cosademostrar.style.flex = "65%";
 	cosademostrar.style.paddingTop = "15";
 	cosademostrar.style.paddingRight = "0";
@@ -46,6 +48,7 @@ var lista = function () {
 	var lista = document.createElement('div');
 	lista.className = "contenedor";
 	lista.style.height = "3000"
+	listo = false
 	for (let index = 0; index < 804; index++) {	
 		var botoncillo = document.createElement('div');
 		botoncillo.className = "boton";
@@ -55,77 +58,42 @@ var lista = function () {
 		botoncillo.style.width = "235";
 		botoncillo.style.padding = "10";
 		botoncillo.style.margin = "10";
-		botoncillo.style.textAlign = "center";
-		botoncillo.style.color = "white";
 		botoncillo.style.overflow = "wrap";	
 		botoncillo.style.float = "left";
+		botoncillo.setAttribute("onclick", "buscameEsta("+botoncillo.id+")");
 		lista.appendChild(botoncillo);		
 	}
+	listo = true
 	cosademostrar.appendChild(lista);
 };	
  
-var informacion = function(){
-	estadisticas();
-	debilidades();
-	fotillo();
-	info();
+function limpiameEsta(){
+	document.body.innerHTML = "";	
+	var fondillo = document.createElement('div');
+	fondillo.id = "fondo";
+	fondillo.style.top = "0"
+	fondillo.style.left = "0"
+	fondillo.style.padding = "0"
+	fondillo.style.opacity = "0.6"
+	fondillo.style.position = "absolute"
+	fondillo.style.height = "100%"
+	fondillo.style.width = "100%"
+	fondillo.style.background = "url('assets/fondo.png')";
+	document.body.appendChild(fondillo);
+}
+var informacion = function(id){
+	limpiameEsta();
+	info(id);
+	estadisticas(id);
+	debilidades(id);
+	fotillo(id);
 }
 
-var info = function(){		
-	var bicho = new Image();
-	bicho.id = 'bicho'
-	bicho.src = 'assets/TiposGrande/bicho.png';
-	var siniestro = new Image();
-	siniestro.id = 'siniestro'
-	siniestro.src = 'assets/TiposGrande/siniestro.png';
-	var dragon = new Image();
-	dragon.id = 'dragon'
-	dragon.src = 'assets/TiposGrande/dragon.png';
+var info = function(id){	
 	var electrico = new Image();
 	electrico.id = 'electrico'
 	electrico.src = 'assets/TiposGrande/electrico.png';
-	var hada = new Image();
-	hada.id = 'hada'
-	hada.src = 'assets/TiposGrande/hada.png';
-	var lucha = new Image();
-	lucha.id = 'lucha'
-	lucha.src = 'assets/TiposGrande/lucha.png';
-	var fuego = new Image();
-	fuego.id = 'fuego'
-	fuego.src = 'assets/TiposGrande/fuego.png';
-	var volador = new Image();
-	volador.id = 'volador'
-	volador.src = 'assets/TiposGrande/volador.png';
-	var fantasma = new Image();
-	fantasma.id = 'fantasma'
-	fantasma.src = 'assets/TiposGrande/fantasma.png';
-	var planta = new Image();
-	planta.id = 'planta'
-	planta.src = 'assets/TiposGrande/planta.png';
-	var tierra = new Image();
-	tierra.id = 'tierra'
-	tierra.src = 'assets/TiposGrande/tierra.png';
-	var hielo = new Image();
-	hielo.id = 'hielo'
-	hielo.src = 'assets/TiposGrande/hielo.png';
-	var normal = new Image();
-	normal.id = 'normal'
-	normal.src = 'assets/TiposGrande/normal.png';
-	var veneno = new Image();
-	veneno.id = 'veneno'
-	veneno.src = 'assets/TiposGrande/veneno.png';
-	var psiquico = new Image();
-	psiquico.id = 'psiquico'
-	psiquico.src = 'assets/TiposGrande/psiquico.png';
-	var roca = new Image();
-	roca.id = 'roca'
-	roca.src = 'assets/TiposGrande/roca.png';
-	var acero = new Image();
-	acero.id = 'acero'
-	acero.src = 'assets/TiposGrande/acero.png';
-	var agua = new Image();
-	agua.id = 'agua'
-	agua.src = 'assets/TiposGrande/agua.png';
+	
 	var titulo_nombre = document.createElement('h1');
 	var nombre = "Shinx";
 	titulo_nombre.id = "titulo_nombre"
@@ -275,7 +243,7 @@ var info = function(){
 	var rol = new Image();
 	rol.id = 'rol'
 	rol.src = 'assets/info/rol.png'
-	var competitivo = " : "+"LC"+ ",       :"+ "Sweeper";
+	var competitivo = " : "+"LC"+ "        :"+ "Sweeper";
 	var canvasCompetitivo = document.createElement('canvas');
 	canvasCompetitivo.id = 'cCompetitivo';
 	canvasCompetitivo.style.position = 'fixed';
@@ -362,11 +330,10 @@ var info = function(){
 		$("#titulo_clasificacion").text(clasificacion);
   });
 }
-var fotillo = function(){
-	var numero = 403;
+var fotillo = function(id){
 	var fotillo = new Image();
 	fotillo.id = 'fotillo'
-	fotillo.src = 'assets/sprites/'+numero+'.png';
+	fotillo.src = 'assets/sprites/'+id+'.png';
 	fotillo.style.position = 'fixed';
 	fotillo.style.top = '50%';
 	fotillo.style.left = '50%';
@@ -375,7 +342,7 @@ var fotillo = function(){
 	fotillo.style.zIndex = 999;
 	document.body.appendChild(fotillo);
 }
-var estadisticas = function () {
+var estadisticas = function (id) {
 	var nombre = "Shinx"
 	var hp_stat = 45
 	var attack_stat = 65
@@ -438,7 +405,7 @@ var estadisticas = function () {
 	});
 };
 
-var debilidades = function () {
+var debilidades = function (id) {
 	var ab = 1;
 	var ad = 1;
 	var adr = 1;
