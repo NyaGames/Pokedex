@@ -23,19 +23,229 @@ function scrolleameEsta(){
   var x = elmnt.scrollLeft;
   var y = elmnt.scrollTop;
 };
-
+function despliegaGeneraciones(){
+	document.getElementsByClassName("generacion").classList.toggle("show");
+}
 var lista = function () {
 	var cosadelistas = document.createElement('div');
 	cosadelistas.className = "columnas";
 	cosadelistas.style.display = "flex";
 	document.body.appendChild(cosadelistas);
+
 	var cosadebuscar = document.createElement('div');
 	cosadebuscar.className = "buscador";
 	cosadebuscar.style.backgroundColor = "#bbb";
 	cosadebuscar.style.flex = "35%";
 	cosadebuscar.style.paddingTop = "15";
 	cosadebuscar.style.paddingRight = "0";
-	cosadelistas.appendChild(cosadebuscar);
+	cosadelistas.appendChild(cosadebuscar);	
+
+	var buscador = document.createElement('input', ["text"]);
+	buscador.className = "busqueda";
+	buscador.placeholder = "Nombre de Pokémon";
+	buscador.style.margin = "20";
+	buscador.style.height = "30";
+	buscador.style.width = "150";
+	cosadebuscar.appendChild(buscador);
+
+	var generaciones = document.createElement("select");
+	cosadebuscar.appendChild(generaciones);
+	var todas = document.createElement("option");
+	todas.value = "todas"
+	todas.text = "Todas"
+	generaciones.appendChild(todas);
+	var gen1 = document.createElement("option");
+	gen1.value = "Gen1"
+	gen1.text = "Generacion 1"
+	generaciones.appendChild(gen1);
+	var gen2 = document.createElement("option");
+	gen2.value = "Gen2"
+	gen2.text = "Generacion 2"
+	generaciones.appendChild(gen2);
+	var gen3 = document.createElement("option");
+	gen3.value = "Gen3"
+	gen3.text = "Generacion 3"
+	generaciones.appendChild(gen3);
+	var gen4 = document.createElement("option");
+	gen4.value = "Gen4"
+	gen4.text = "Generacion 4"
+	generaciones.appendChild(gen4);
+	var gen5 = document.createElement("option");
+	gen5.value = "Gen5"
+	gen5.text = "Generacion 5"
+	generaciones.appendChild(gen5);
+	var gen6 = document.createElement("option");
+	gen6.value = "Gen6"
+	gen6.text = "Generacion 6"
+	generaciones.appendChild(gen6);
+	var gen7 = document.createElement("option");
+	gen7.value = "Gen7"
+	gen7.text = "Generacion 7"
+	generaciones.appendChild(gen7);
+
+	var legendario = document.createElement('input');
+	legendario.type = "checkbox";
+	legendario.value = "false";
+	
+	var tipo1 = document.createElement("select");
+	cosadebuscar.appendChild(tipo1);
+	var todas = document.createElement("option");
+	todas.value = "todas"
+	todas.text = "Todas"
+	tipo1.appendChild(todas);
+	var acero = document.createElement("option");
+	acero.value = "acero"
+	acero.text = "Acero"
+	tipo1.appendChild(acero);
+	var agua = document.createElement("option");
+	agua.value = "agua"
+	agua.text = "Agua"
+	tipo1.appendChild(agua);
+	var bicho = document.createElement("option");
+	bicho.value = "bicho"
+	bicho.text = "Bicho"
+	tipo1.appendChild(bicho);
+	var dragon = document.createElement("option");
+	dragon.value = "dragon"
+	dragon.text = "Dragon"
+	tipo1.appendChild(dragon);
+	var electrico = document.createElement("option");
+	electrico.value = "electrico"
+	electrico.text = "Electrico"
+	tipo1.appendChild(electrico);
+	var fantasma = document.createElement("option");
+	fantasma.value = "fantasma"
+	fantasma.text = "Fantasma"
+	tipo1.appendChild(fantasma);
+	var fuego = document.createElement("option");
+	fuego.value = "fuego"
+	fuego.text = "Fuego"
+	tipo1.appendChild(fuego);
+	var hada = document.createElement("option");
+	hada.value = "hada"
+	hada.text = "Hada"
+	tipo1.appendChild(hada);
+	var hielo = document.createElement("option");
+	hielo.value = "hielo"
+	hielo.text = "Hielo"
+	tipo1.appendChild(hielo);
+	var lucha = document.createElement("option");
+	lucha.value = "lucha"
+	lucha.text = "Lucha"
+	tipo1.appendChild(lucha);
+	var normal = document.createElement("option");
+	normal.value = "normal"
+	normal.text = "Normal"
+	tipo1.appendChild(normal);
+	var planta = document.createElement("option");
+	planta.value = "planta"
+	planta.text = "Planta"
+	tipo1.appendChild(planta);
+	var psiquico = document.createElement("option");
+	psiquico.value = "psiquico"
+	psiquico.text = "Psiquico"
+	tipo1.appendChild(psiquico);
+	var roca = document.createElement("option");
+	roca.value = "roca"
+	roca.text = "Roca"
+	tipo1.appendChild(roca);
+	var siniestro = document.createElement("option");
+	siniestro.value = "siniestro"
+	siniestro.text = "Siniestro"
+	tipo1.appendChild(siniestro);
+	var tierra = document.createElement("option");
+	tierra.value = "tierra"
+	tierra.text = "Tierra"
+	tipo1.appendChild(tierra);
+	var veneno = document.createElement("option");
+	veneno.value = "veneno"
+	veneno.text = "Veneno"
+	tipo1.appendChild(veneno);
+	var volador = document.createElement("option");
+	volador.value = "volador"
+	volador.text = "Volador"
+	tipo1.appendChild(volador);
+
+	var tipo2 = document.createElement("select");
+	cosadebuscar.appendChild(tipo2);
+	var todas = document.createElement("option");
+	todas.value = "todas"
+	todas.text = "Todas"
+	tipo2.appendChild(todas);
+	var acero = document.createElement("option");
+	acero.value = "acero"
+	acero.text = "Acero"
+	tipo2.appendChild(acero);
+	var agua = document.createElement("option");
+	agua.value = "agua"
+	agua.text = "Agua"
+	tipo2.appendChild(agua);
+	var bicho = document.createElement("option");
+	bicho.value = "bicho"
+	bicho.text = "Bicho"
+	tipo2.appendChild(bicho);
+	var dragon = document.createElement("option");
+	dragon.value = "dragon"
+	dragon.text = "Dragon"
+	tipo2.appendChild(dragon);
+	var electrico = document.createElement("option");
+	electrico.value = "electrico"
+	electrico.text = "Electrico"
+	tipo2.appendChild(electrico);
+	var fantasma = document.createElement("option");
+	fantasma.value = "fantasma"
+	fantasma.text = "Fantasma"
+	tipo2.appendChild(fantasma);
+	var fuego = document.createElement("option");
+	fuego.value = "fuego"
+	fuego.text = "Fuego"
+	tipo2.appendChild(fuego);
+	var hada = document.createElement("option");
+	hada.value = "hada"
+	hada.text = "Hada"
+	tipo2.appendChild(hada);
+	var hielo = document.createElement("option");
+	hielo.value = "hielo"
+	hielo.text = "Hielo"
+	tipo2.appendChild(hielo);
+	var lucha = document.createElement("option");
+	lucha.value = "lucha"
+	lucha.text = "Lucha"
+	tipo2.appendChild(lucha);
+	var normal = document.createElement("option");
+	normal.value = "normal"
+	normal.text = "Normal"
+	tipo2.appendChild(normal);
+	var planta = document.createElement("option");
+	planta.value = "planta"
+	planta.text = "Planta"
+	tipo2.appendChild(planta);
+	var psiquico = document.createElement("option");
+	psiquico.value = "psiquico"
+	psiquico.text = "Psiquico"
+	tipo2.appendChild(psiquico);
+	var roca = document.createElement("option");
+	roca.value = "roca"
+	roca.text = "Roca"
+	tipo2.appendChild(roca);
+	var siniestro = document.createElement("option");
+	siniestro.value = "siniestro"
+	siniestro.text = "Siniestro"
+	tipo2.appendChild(siniestro);
+	var tierra = document.createElement("option");
+	tierra.value = "tierra"
+	tierra.text = "Tierra"
+	tipo2.appendChild(tierra);
+	var veneno = document.createElement("option");
+	veneno.value = "veneno"
+	veneno.text = "Veneno"
+	tipo2.appendChild(veneno);
+	var volador = document.createElement("option");
+	volador.value = "volador"
+	volador.text = "Volador"
+	tipo2.appendChild(volador);
+
+	cosadebuscar.appendChild(legendario);
 	var cosademostrar = document.createElement('div');
 	cosademostrar.className = "lista";
 	cosademostrar.style.height = "1000";
@@ -45,6 +255,7 @@ var lista = function () {
 	cosademostrar.style.paddingTop = "15";
 	cosademostrar.style.paddingRight = "0";
 	cosadelistas.appendChild(cosademostrar);
+
 	var lista = document.createElement('div');
 	lista.className = "contenedor";
 	lista.style.height = "3000"
