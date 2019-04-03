@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.pokedex.com/nyachan"> 
+	<xs:element name ="practica">
+
+			<xs:complexType name="autor" type="xs:string" minOccurs="1" maxOccurs="unbounded">
+
+				<xs:complexType>
+					<xs:element name="nombre" type="xs:string" maxOccurs="unbounded"/>
+				</xs:complexType>
+
+				<xs:complexType>
+					<xs:element name="apellido1" type="xs:string" maxOccurs="1"/>
+				</xs:complexType>
+
+				<xs:complexType>
+					<xs:element name="apellido2" type="xs:string" maxOccurs="1"/>
+				</xs:complexType>
+
+		</xs:complexType>
+
+			<xs:complexType name="asignatura" type="xs:string" minOccurs="1" maxOccurs="unbounded">
+
+				<xs:complexType>
+					<xs:element name="asig" type="xs:string" maxOccurs="unbounded"/>
+				</xs:complexType>
+
+				<xs:complexType>
+					<xs:element name="anno" type="xs:string" maxOccurs="2"/>
+				</xs:complexType>
+
+		</xs:complexType>
+
+			<xs:complexType name="usuario" type="xs:string" minOccurs="1" maxOccurs="unbounded">
+
+				<xs:complexType>
+					<xs:element name="id" type="xs:string" maxOccurs="1"/>
+				</xs:complexType>
+
+		</xs:complexType>
+
+	</xs:element>
+</xs:schema>

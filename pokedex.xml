@@ -1,0 +1,36 @@
+<!DOCTYPE practica [
+	 <!ELEMENT autor (nombre, apellido1, apellido2)>
+	 <!ELEMENT nombre (#PCDATA)>
+	 <!ELEMENT apellido1 (#PCDATA)>
+	 <!ELEMENT apellido2 (#PCDATA)>
+	 <!ELEMENT usuario (id)>
+	 <!ELEMENT asignatura (asig, anno)>
+	 <!ELEMENT asig (#PCDATA)>
+	 <!ELEMENT anno (#PCDATA)>
+	 <!ELEMENT id (#PCDATA)>
+	 <!ELEMENT practica (autor*, asignatura, usuario)>
+]>
+<practica>
+	<autor>
+		<nombre> </nombre>
+		<apellido1> </apellido1>
+		<apellido2> </apellido2>
+	</autor>
+
+	<autor>
+		<nombre> </nombre>
+		<apellido1> </apellido1>
+		<apellido2> </apellido2>
+	</autor>
+
+	<asignatura>
+		<asig> </asig>
+		<anno> </anno>
+	</asignatura>
+
+	<usuario>
+		<id> </id>
+	</usuario>
+
+</practica>
+
