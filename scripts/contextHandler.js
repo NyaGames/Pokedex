@@ -44,15 +44,24 @@ var lista = function () {
 	buscador.className = "busqueda";
 	buscador.placeholder = "Nombre de Pokémon";
 	buscador.style.margin = "20";
-	buscador.style.height = "30";
-	buscador.style.width = "150";
+	buscador.style.height = "50";
+	buscador.style.width = "200";
 	cosadebuscar.appendChild(buscador);
 
 	var generaciones = document.createElement("select");
 	cosadebuscar.appendChild(generaciones);
 	var todas = document.createElement("option");
 	todas.value = "todas"
-	todas.text = "Todas"
+	todas.text = "Generaciones"
+	
+
+	generaciones.style.position = "absolute";
+	generaciones.style.marginTop = "6%";
+	generaciones.style.marginLeft = "-9%";
+	generaciones.style.width = 200;
+	generaciones.style.height = 50;
+
+		
 	generaciones.appendChild(todas);
 	var gen1 = document.createElement("option");
 	gen1.value = "Gen1"
@@ -86,12 +95,40 @@ var lista = function () {
 	var legendario = document.createElement('input');
 	legendario.type = "checkbox";
 	legendario.value = "false";
+
+	var textoLegendario = document.createElement('h1');
+	var nombre2 = "Legendario";
+	textoLegendario.id = "textoLegendario"
+	textoLegendario.style.position = "absolute";
+	textoLegendario.style.fontSize= 30;
+	textoLegendario.style.color= "black";
+	textoLegendario.style.marginTop = "30%";
+	textoLegendario.style.marginLeft = "8%";
+	textoLegendario.style.zIndex = 30;
+
+	$(document).ready(function(){
+		$("#textoLegendario").text(nombre2);
+	});
+
+	legendario.style.position = "absolute";
+	legendario.style.marginTop = "35%";
+	legendario.style.marginLeft = "-9%";
+	legendario.style.width = 50;
+	legendario.style.height = 50;
 	
 	var tipo1 = document.createElement("select");
 	cosadebuscar.appendChild(tipo1);
 	var todas = document.createElement("option");
+
+	tipo1.style.position = "absolute";
+	tipo1.style.marginTop = "15%";
+	tipo1.style.marginLeft = "-9%";
+	tipo1.style.width = 200;
+	tipo1.style.height = 50;
+
+
 	todas.value = "todas"
-	todas.text = "Todas"
+	todas.text = "Tipo 1"
 	tipo1.appendChild(todas);
 	var acero = document.createElement("option");
 	acero.value = "acero"
@@ -169,8 +206,16 @@ var lista = function () {
 	var tipo2 = document.createElement("select");
 	cosadebuscar.appendChild(tipo2);
 	var todas = document.createElement("option");
+
+	tipo2.style.position = "absolute";
+	tipo2.style.marginTop = "25%";
+	tipo2.style.marginLeft = "-9%";
+	tipo2.style.width = 200;
+	tipo2.style.height = 50;
+
+
 	todas.value = "todas"
-	todas.text = "Todas"
+	todas.text = "Tipo 2"
 	tipo2.appendChild(todas);
 	var acero = document.createElement("option");
 	acero.value = "acero"
@@ -246,6 +291,8 @@ var lista = function () {
 	tipo2.appendChild(volador);
 
 	cosadebuscar.appendChild(legendario);
+	cosadebuscar.appendChild(textoLegendario);
+
 	var cosademostrar = document.createElement('div');
 	cosademostrar.className = "lista";
 	cosademostrar.style.height = "1000";
@@ -254,7 +301,7 @@ var lista = function () {
 	cosademostrar.style.flex = "65%";
 	cosademostrar.style.paddingTop = "15";
 	cosademostrar.style.paddingRight = "0";
-	cosadelistas.appendChild(cosademostrar);
+	cosadelistas.appendChild(cosademostrar);	
 
 	var lista = document.createElement('div');
 	lista.className = "contenedor";
@@ -276,6 +323,7 @@ var lista = function () {
 	}
 	listo = true
 	cosademostrar.appendChild(lista);
+
 };	
  
 function limpiameEsta(){
