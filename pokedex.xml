@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE practica [
 	 <!ELEMENT autor (nombre, apellido1, apellido2)>
 	 <!ELEMENT nombre (#PCDATA)>
@@ -7,30 +8,24 @@
 	 <!ELEMENT asignatura (asig, anno)>
 	 <!ELEMENT asig (#PCDATA)>
 	 <!ELEMENT anno (#PCDATA)>
-	 <!ELEMENT id (#PCDATA)>
-	 <!ELEMENT practica (autor*, asignatura, usuario)>
+	 <!ELEMENT practica (autor*, asignatura)>
 ]>
 <practica>
 	<autor>
-		<nombre> </nombre>
-		<apellido1> </apellido1>
-		<apellido2> </apellido2>
+		<nombre>Diego</nombre>
+		<apellido1>Sanchez </apellido1>
+		<apellido2>Ramirez //</apellido2>
 	</autor>
 
 	<autor>
-		<nombre> </nombre>
-		<apellido1> </apellido1>
-		<apellido2> </apellido2>
+		<nombre> Jaime</nombre>
+		<apellido1>Rodriguez</apellido1>
+		<apellido2>Aguado //</apellido2>
 	</autor>
 
 	<asignatura>
-		<asig> </asig>
-		<anno> </anno>
+		<asig> Gestion de Datos //</asig>
+		<anno> 2018/2019</anno>
 	</asignatura>
 
-	<usuario>
-		<id> </id>
-	</usuario>
-
 </practica>
-
