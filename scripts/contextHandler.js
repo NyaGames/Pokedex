@@ -340,12 +340,30 @@ function limpiameEsta(){
 	fondillo.style.background = "url('assets/fondo.png')";
 	document.body.appendChild(fondillo);
 }
+
+function vuelve(){
+	document.body.innerHTML = "";	
+	var fondillo = document.createElement('div');
+	fondillo.id = "fondo";
+	fondillo.style.top = "0"
+	fondillo.style.left = "0"
+	fondillo.style.padding = "0"
+	fondillo.style.opacity = "0.6"
+	fondillo.style.position = "absolute"
+	fondillo.style.height = "100%"
+	fondillo.style.width = "100%"
+	fondillo.style.background = "url('assets/fondo.png')";
+	fondillo.style.zIndex = -9000;
+	document.body.appendChild(fondillo);
+	lista();
+}
+
 var informacion = function(id){
 	limpiameEsta();
-	info(id);
 	estadisticas(id);
 	debilidades(id);
 	fotillo(id);
+	info(id);
 }
 
 var info = function(id){	
@@ -520,6 +538,31 @@ var info = function(id){
 	canvasCompetitivo.style.marginTop = -150;
 	canvasCompetitivo.style.marginLeft = -150;
 	canvasCompetitivo.style.zIndex = 1;
+
+
+	/*var volver = new Image();
+	volver.id = 'volver'
+	volver.src = 'assets/info/volver.png';
+	var canvasVolver = document.createElement('input');
+	canvasVolver.type = "button";
+	canvasVolver.id = 'cVolver';
+	canvasVolver.src = '<img src="assets/info/volver.png" />';
+	canvasVolver.style.position = 'fixed';
+	canvasVolver.style.top = '50%';
+	canvasVolver.style.left = '70%';
+	canvasVolver.style.width = 60;
+	canvasVolver.style.height = 60;
+	canvasVolver.style.zIndex = 1;	
+	canvasVolver.onclick = limpiameEsta();
+	canvasVolver.setAttribute("onclick", "vuelve()");
+	document.body.appendChild(canvasVolver);*/
+
+		$(document).keydown(function(e) {
+	     if (e.key === "Escape") { 
+	        vuelve();
+	    }
+	});
+
 
 	document.body.appendChild(canvasCaptura);	
 	$(canvasCaptura).ready(function(){
