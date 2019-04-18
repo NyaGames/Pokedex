@@ -14,8 +14,16 @@ var inicio = function () {
     };
 };
 
-function buscameEsta(id){
-		informacion(id)
+function buscameEsta(i){
+	$.ajax({
+		method: "GET",
+		url: "/pokedex",
+		data: {
+			id: i
+		},
+	}).done(function(data){
+		informacion(data);
+	});
 };
 
 function scrolleameEsta(){
@@ -42,13 +50,27 @@ var lista = function () {
 
 	var buscador = document.createElement('input', ["text"]);
 	buscador.className = "busqueda";
+	buscador.id = "busqueda";
 	buscador.placeholder = "Nombre de Pokémon";
+	buscador.value = "Todos";
 	buscador.style.margin = "20";
 	buscador.style.height = "50";
 	buscador.style.width = "200";
 	cosadebuscar.appendChild(buscador);
-
+	
+	var nuevoPokemon = document.createElement("button");
+	nuevoPokemon.id = "nuevoPokemon";
+	nuevoPokemon.value = "Nuevo Pokemon";
+	nuevoPokemon.text = "Nuevo Pokemon";
+	nuevoPokemon.style.width = "50";
+	nuevoPokemon.style.height = "50";
+	nuevoPokemon.onclick = function(){
+		meterPokemito();
+	}
+	cosadebuscar.appendChild(nuevoPokemon);
+	
 	var generaciones = document.createElement("select");
+	generaciones.id = "generaciones"
 	cosadebuscar.appendChild(generaciones);
 	var todas = document.createElement("option");
 	todas.value = "todas"
@@ -94,7 +116,16 @@ var lista = function () {
 
 	var legendario = document.createElement('input');
 	legendario.type = "checkbox";
-	legendario.value = "false";
+	legendario.id = "legendario";
+	legendario.value = 0;
+	legendario.onclick = function(){
+		var legendario = document.getElementById("legendario");
+		if(legendario.value == 0){
+			legendario.value = 1;
+		}else{
+			legendario.value = 0;
+		}
+	}
 
 	var textoLegendario = document.createElement('h1');
 	var nombre2 = "Legendario";
@@ -116,7 +147,12 @@ var lista = function () {
 	legendario.style.width = 50;
 	legendario.style.height = 50;
 	
+	var botonBuscar = document.createElement('input');
+	botonBuscar.type = "button";
+	botonBuscar.setAttribute("onclick", "busqueda()");
+	
 	var tipo1 = document.createElement("select");
+	tipo1.id = "tipo1";
 	cosadebuscar.appendChild(tipo1);
 	var todas = document.createElement("option");
 
@@ -204,6 +240,7 @@ var lista = function () {
 	tipo1.appendChild(volador);
 
 	var tipo2 = document.createElement("select");
+	tipo2.id = "tipo2";
 	cosadebuscar.appendChild(tipo2);
 	var todas = document.createElement("option");
 
@@ -289,9 +326,33 @@ var lista = function () {
 	volador.value = "volador"
 	volador.text = "Volador"
 	tipo2.appendChild(volador);
+	var none = document.createElement("option");
+	none.value = "none"
+	none.text = "Ninguna"
+	tipo2.appendChild(none);
+	
+	var orden = document.createElement("select");
+	orden.id = "orden";
+	orden.style.position = "absolute";
+	orden.style.marginTop = "50";
+	orden.style.marginLeft = "-9%";
+	orden.style.width = 200;
+	orden.style.height = 50;
+
+	cosadebuscar.appendChild(orden);
+
+	var ascendente = document.createElement("option");
+	ascendente.value = "ascendente"
+	ascendente.text = "Ascendente"
+	orden.appendChild(ascendente);
+	var descendente = document.createElement("option");
+	descendente.value = "descendente"
+	descendente.text = "Descendente"
+	orden.appendChild(descendente);
 
 	cosadebuscar.appendChild(legendario);
 	cosadebuscar.appendChild(textoLegendario);
+	cosadebuscar.appendChild(botonBuscar);
 
 	var cosademostrar = document.createElement('div');
 	cosademostrar.className = "lista";
@@ -306,22 +367,51 @@ var lista = function () {
 	var lista = document.createElement('div');
 	lista.className = "contenedor";
 	lista.style.height = "3000"
-	listo = false
-	for (let index = 0; index < 804; index++) {	
-		var botoncillo = document.createElement('div');
-		botoncillo.className = "boton";
-		botoncillo.id = index +1;
-		botoncillo.style.background = "url('assets/sprites/"+botoncillo.id+".png')";
-		botoncillo.style.height = "235";
-		botoncillo.style.width = "235";
-		botoncillo.style.padding = "10";
-		botoncillo.style.margin = "10";
-		botoncillo.style.overflow = "wrap";	
-		botoncillo.style.float = "left";
-		botoncillo.setAttribute("onclick", "buscameEsta("+botoncillo.id+")");
-		lista.appendChild(botoncillo);		
-	}
-	listo = true
+	$.ajax({
+		method: "PUT",
+		url: "/pokedex",
+		data: {
+			generacion: "todas",
+			tipo1: "todas",
+			tipo2: "todas",
+			legendario: 0,
+			nombre: "Todos"
+		},
+	}).done(function(data){
+		var orden = document.getElementById("orden");
+		var ordenBuscar = orden.selectedIndex;
+		if(orden.options[ordenBuscar].value == "ascendente"){
+			for (let index = 0; index < data.length; index++) {	
+				var botoncillo = document.createElement('div');
+				botoncillo.className = "boton";
+				botoncillo.id = data[index];
+				botoncillo.style.background = "url('assets/sprites/"+botoncillo.id+".png')";
+				botoncillo.style.height = "235";
+				botoncillo.style.width = "235";
+				botoncillo.style.padding = "10";
+				botoncillo.style.margin = "10";
+				botoncillo.style.overflow = "wrap";	
+				botoncillo.style.float = "left";
+				botoncillo.setAttribute("onclick", "buscameEsta("+botoncillo.id+")");
+				lista.appendChild(botoncillo);	
+			}
+		}else{
+			for (let index = data.length; index > 0; index--) {	
+				var botoncillo = document.createElement('div');
+				botoncillo.className = "boton";
+				botoncillo.id = data[index];
+				botoncillo.style.background = "url('assets/sprites/"+botoncillo.id+".png')";
+				botoncillo.style.height = "235";
+				botoncillo.style.width = "235";
+				botoncillo.style.padding = "10";
+				botoncillo.style.margin = "10";
+				botoncillo.style.overflow = "wrap";	
+				botoncillo.style.float = "left";
+				botoncillo.setAttribute("onclick", "buscameEsta("+botoncillo.id+")");
+				lista.appendChild(botoncillo);	
+			}
+		}		
+	});
 	cosademostrar.appendChild(lista);
 
 };	
@@ -358,21 +448,132 @@ function vuelve(){
 	lista();
 }
 
-var informacion = function(id){
+var informacion = function(data){
 	limpiameEsta();
-	estadisticas(id);
-	debilidades(id);
-	fotillo(id);
-	info(id);
+	estadisticas(data);
+	debilidades(data);
+	fotillo(data);
+	info(data);
+	
 }
 
-var info = function(id){	
-	var electrico = new Image();
-	electrico.id = 'electrico'
-	electrico.src = 'assets/TiposGrande/electrico.png';
-	
+var info = function(data){
+	var tipo1 = new Image();
+	var tipo2 = new Image();
+	switch(data.type1){
+	case "bug":
+		tipo1.src = 'assets/TiposGrande/bicho.png';
+		break;
+	case "dark":
+		tipo1.src = 'assets/TiposGrande/siniestro.png';
+		break;
+	case "dragon":
+		tipo1.src = 'assets/TiposGrande/dragon.png';
+		break;
+	case "electric":
+		tipo1.src = 'assets/TiposGrande/electrico.png';
+		break;
+	case "fairy":
+		tipo1.src = 'assets/TiposGrande/hada.png';
+		break;
+	case "fight":
+		tipo1.src = 'assets/TiposGrande/lucha.png';
+		break;
+	case "fire":
+		tipo1.src = 'assets/TiposGrande/fuego.png';
+		break;
+	case "flying":
+		tipo1.src = 'assets/TiposGrande/volador.png';
+		break;
+	case "ghost":
+		tipo1.src = 'assets/TiposGrande/fantasma.png';
+		break;
+	case "grass":
+		tipo1.src = 'assets/TiposGrande/planta.png';
+		break;
+	case "ground":
+		tipo1.src = 'assets/TiposGrande/tierra.png';
+		break;
+	case "ice":
+		tipo1.src = 'assets/TiposGrande/hielo.png';
+		break;
+	case "normal":
+		tipo1.src = 'assets/TiposGrande/normal.png';
+		break;
+	case "poison":
+		tipo1.src = 'assets/TiposGrande/veneno.png';
+		break;
+	case "psychic":
+		tipo1.src = 'assets/TiposGrande/psiquico.png';
+		break;
+	case "rock":
+		tipo1.src = 'assets/TiposGrande/roca.png';
+		break;
+	case "steel":
+		tipo1.src = 'assets/TiposGrande/acero.png';
+		break;
+	case "water":
+		tipo1.src = 'assets/TiposGrande/agua.png';
+		break;
+	}
+	switch(data.type2){
+	case "bug":
+		tipo2.src = 'assets/TiposGrande/bicho.png';
+		break;
+	case "dark":
+		tipo2.src = 'assets/TiposGrande/siniestro.png';
+		break;
+	case "dragon":
+		tipo2.src = 'assets/TiposGrande/dragon.png';
+		break;
+	case "electric":
+		tipo2.src = 'assets/TiposGrande/electrico.png';
+		break;
+	case "fairy":
+		tipo2.src = 'assets/TiposGrande/hada.png';
+		break;
+	case "fight":
+		tipo2.src = 'assets/TiposGrande/lucha.png';
+		break;
+	case "fire":
+		tipo2.src = 'assets/TiposGrande/fuego.png';
+		break;
+	case "flying":
+		tipo2.src = 'assets/TiposGrande/volador.png';
+		break;
+	case "ghost":
+		tipo2.src = 'assets/TiposGrande/fantasma.png';
+		break;
+	case "grass":
+		tipo2.src = 'assets/TiposGrande/planta.png';
+		break;
+	case "ground":
+		tipo2.src = 'assets/TiposGrande/tierra.png';
+		break;
+	case "ice":
+		tipo2.src = 'assets/TiposGrande/hielo.png';
+		break;
+	case "normal":
+		tipo2.src = 'assets/TiposGrande/normal.png';
+		break;
+	case "poison":
+		tipo2.src = 'assets/TiposGrande/veneno.png';
+		break;
+	case "psychic":
+		tipo2.src = 'assets/TiposGrande/psiquico.png';
+		break;
+	case "rock":
+		tipo2.src = 'assets/TiposGrande/roca.png';
+		break;
+	case "steel":
+		tipo2.src = 'assets/TiposGrande/acero.png';
+		break;
+	case "water":
+		tipo2.src = 'assets/TiposGrande/agua.png';
+		break;
+	}
 	var titulo_nombre = document.createElement('h1');
-	var nombre = "Shinx";
+	var nombre = data.name;
 	titulo_nombre.id = "titulo_nombre"
 	titulo_nombre.style.position = 'fixed';
 	titulo_nombre.style.fontSize= 150;
@@ -381,7 +582,7 @@ var info = function(id){
 	titulo_nombre.style.top = '-9%';
 
 	var titulo_japones = document.createElement('h2');
-	var nombre_japones = "Kolinkコリンク";
+	var nombre_japones = data.japanese_name;
 	titulo_japones.id = "titulo_japones"
 	titulo_japones.style.position = 'fixed';
 	titulo_japones.style.color= "pink";
@@ -389,7 +590,7 @@ var info = function(id){
 	titulo_japones.style.top = '60%';
 
 	var titulo_numero = document.createElement('h1');	
-	var numero = "#" +403;
+	var numero = "#" +data.number;
 	titulo_numero.id = "titulo_numero"
 	titulo_numero.style.position = 'fixed';
 	titulo_numero.style.fontSize= 200;
@@ -398,7 +599,7 @@ var info = function(id){
 	titulo_numero.style.top = '3%';
 
 	var titulo_clasificacion = document.createElement('h2');
-	var clasificacion = "Pokemon Monisimo";
+	var clasificacion = data.classfication;
 	titulo_clasificacion.id = "titulo_clasificacion";
 	titulo_clasificacion.style.position = 'fixed';
 	titulo_clasificacion.style.color= "orange";
@@ -408,7 +609,7 @@ var info = function(id){
 	var huevo = new Image();
 	huevo.id = 'huevo'
 	huevo.src = 'assets/info/huevo.png';
-	var pasos =" : " +5120;
+	var pasos =" : " +data.egg_steps;
 	var canvasPasos = document.createElement('canvas');
 	canvasPasos.id = 'cPasos';
 	canvasPasos.style.position = 'fixed';
@@ -425,7 +626,7 @@ var info = function(id){
 	var corazoncillo = new Image();
 	corazoncillo.id = 'corazoncillo'
 	corazoncillo.src = 'assets/info/amistad.png';
-	var amistad = " : "+70;
+	var amistad = " : "+data.happiness;
 	var canvasAmistad = document.createElement('canvas');
 	canvasAmistad.id = 'cAmistad';
 	canvasAmistad.style.position = 'fixed';
@@ -439,7 +640,7 @@ var info = function(id){
 	var captura = new Image();
 	captura.id = 'captura'
 	captura.src = 'assets/info/captura.png';
-	var ratiocaptura = " : "+235;
+	var ratiocaptura = " : "+data.capture_rate;
 	var canvasCaptura = document.createElement('canvas');
 	canvasCaptura.id = 'cCaptura';
 	canvasCaptura.style.position = 'fixed';
@@ -454,7 +655,7 @@ var info = function(id){
 	var exp = new Image();
 	exp.id = 'exp'
 	exp.src = 'assets/info/exp.png';
-	var experiencia = " : "+1059860;
+	var experiencia = " : "+data.experience;
 	var canvasExperiencia = document.createElement('canvas');
 	canvasExperiencia.id = 'cExperiencia';
 	canvasExperiencia.style.position = 'fixed';
@@ -468,7 +669,7 @@ var info = function(id){
 	var cosademedir = new Image();
 	cosademedir.id = 'cosademedir'
 	cosademedir.src = 'assets/info/altura.png';
-	var altura = " : "+0.5;
+	var altura = " : "+data.height;
 	var canvasAltura = document.createElement('canvas');
 	canvasAltura.id = 'cAltura';
 	canvasAltura.style.position = 'fixed';
@@ -482,7 +683,7 @@ var info = function(id){
 	var cosadepesar = new Image();
 	cosadepesar.id = 'cosadepesar'
 	cosadepesar.src = 'assets/info/peso.png';
-	var peso = " : "+9.5;
+	var peso = " : "+data.weight;
 	var canvasPeso = document.createElement('canvas');
 	canvasPeso.id = 'cPeso';
 	canvasPeso.style.position = 'fixed';
@@ -499,7 +700,12 @@ var info = function(id){
 	var femenino = new Image();
 	femenino.id = 'femenino'
 	femenino.src = 'assets/info/hembra.png'
-	var genero = " : "+0.5+ "          	: "+(1-0.5);
+	if(data.male != -1.0){
+		var genero = " : "+data.male+ "          	: "+(100-data.male);	
+	}else{
+		var genero = " : "+data.male+ "          	: "+data.male;
+	}
+	
 	var canvasGenero = document.createElement('canvas');
 	canvasGenero.id = 'cGenero';
 	canvasGenero.style.position = 'fixed';
@@ -528,7 +734,7 @@ var info = function(id){
 	var rol = new Image();
 	rol.id = 'rol'
 	rol.src = 'assets/info/rol.png'
-	var competitivo = " : "+"LC"+ "        :"+ "Sweeper";
+	var competitivo = " : "+data.tier+ "        :"+ data.use;
 	var canvasCompetitivo = document.createElement('canvas');
 	canvasCompetitivo.id = 'cCompetitivo';
 	canvasCompetitivo.style.position = 'fixed';
@@ -539,25 +745,7 @@ var info = function(id){
 	canvasCompetitivo.style.marginLeft = -150;
 	canvasCompetitivo.style.zIndex = 1;
 
-
-	/*var volver = new Image();
-	volver.id = 'volver'
-	volver.src = 'assets/info/volver.png';
-	var canvasVolver = document.createElement('input');
-	canvasVolver.type = "button";
-	canvasVolver.id = 'cVolver';
-	canvasVolver.src = '<img src="assets/info/volver.png" />';
-	canvasVolver.style.position = 'fixed';
-	canvasVolver.style.top = '50%';
-	canvasVolver.style.left = '70%';
-	canvasVolver.style.width = 60;
-	canvasVolver.style.height = 60;
-	canvasVolver.style.zIndex = 1;	
-	canvasVolver.onclick = limpiameEsta();
-	canvasVolver.setAttribute("onclick", "vuelve()");
-	document.body.appendChild(canvasVolver);*/
-
-		$(document).keydown(function(e) {
+	$(document).keydown(function(e) {
 	     if (e.key === "Escape") { 
 	        vuelve();
 	    }
@@ -617,8 +805,9 @@ var info = function(id){
 	});
 	document.body.appendChild(canvasTipos);
 	$(canvasTipos).ready(function(){
-		var ctx = canvasTipos.getContext("2d");
-		ctx.drawImage(electrico,120,40, 35, 35);
+		var ctx = canvasTipos.getContext("2d");		
+		ctx.drawImage(tipo1,120,40, 35, 35);
+		ctx.drawImage(tipo2,250,40, 35, 35);
 		ctx.font = "30px Arial"
 		ctx.fillText(tipo, 10, 73)		
 	});
@@ -641,10 +830,27 @@ var info = function(id){
 		$("#titulo_clasificacion").text(clasificacion);
   });
 }
-var fotillo = function(id){
+var fotillo = function(data){
+	var forma = 0;
+	$(document).keydown(function(e) {
+	     if (e.key === "ArrowRight") {
+	    	 if(forma < data.form.lenght){
+	  	       forma++; 
+	    	 }
+	     }
+	     if (e.key === "ArrowLeft") { 
+	       if(forma > 0){
+		  	    forma--; 
+		   }
+		 }
+	});
+	if(document.getElementById("fotillo") != null){
+		document.getElementById("fotillo").remove();
+	}
+	console.log(data.form[forma]);
 	var fotillo = new Image();
 	fotillo.id = 'fotillo'
-	fotillo.src = 'assets/sprites/'+id+'.png';
+	fotillo.src = 'assets/sprites/'+data.number+'.png';
 	fotillo.style.position = 'fixed';
 	fotillo.style.top = '50%';
 	fotillo.style.left = '50%';
@@ -652,15 +858,16 @@ var fotillo = function(id){
 	fotillo.style.marginLeft = -128;
 	fotillo.style.zIndex = 999;
 	document.body.appendChild(fotillo);
+	
 }
-var estadisticas = function (id) {
-	var nombre = "Shinx"
-	var hp_stat = 45
-	var attack_stat = 65
-	var deffense_stat = 34
-	var speed_stat = 40
-	var sp_deffense_stat = 34
-	var sp_attack_stat = 45
+var estadisticas = function (data) {
+	var nombre = data.name;
+	var hp_stat = data.hp;
+	var attack_stat = data.attack;
+	var deffense_stat = data.defense;
+	var speed_stat = data.speed;
+	var sp_deffense_stat = data.sp_defense;
+	var sp_attack_stat = data.sp_attack;
 
 	var canvasEstadisticas = document.createElement('canvas');
 	canvasEstadisticas.id = 'estadisticas';
@@ -674,7 +881,7 @@ var estadisticas = function (id) {
 	canvasEstadisticas.style.zIndex = 1;
 
 	var titulo_estadisticas = document.createElement('h3');
-	var base_estadisticas = "Estadisticas base: "+263;
+	var base_estadisticas = "Estadisticas base: "+data.base_total;
 	titulo_estadisticas.id = "titulo_estadisticas";
 	titulo_estadisticas.style.position = 'fixed';
 	titulo_estadisticas.style.top = '37%';
@@ -716,25 +923,25 @@ var estadisticas = function (id) {
 	});
 };
 
-var debilidades = function (id) {
-	var ab = 1;
-	var ad = 1;
-	var adr = 1;
-	var ae = 0.5;
-	var af = 1;
-	var afi = 1;
-	var afir = 1;
-	var afy = 0.5;
-	var ag = 1;
-	var agr = 1;
-	var agro = 1;
-	var ai = 1;
-	var an = 1;
-	var ap = 1;
-	var apy = 1;
-	var ar = 1;
-	var as = 0.5;
-	var aw = 1;
+var debilidades = function (data) {
+	var ab = data.ab;
+	var ad = data.ad;
+	var adr = data.abr;
+	var ae = data.ae;
+	var af = data.af;
+	var afi = data.afi;
+	var afir = data.afir;
+	var afy = data.afl;
+	var ag = data.ag;
+	var agr = data.agr;
+	var agro = data.agro;
+	var ai = data.ai;
+	var an = data.an;
+	var ap = data.ap;
+	var apy = data.aps;
+	var ar = data.ar;
+	var as = data.as;
+	var aw = data.aw;
 	var canvasDebilidades = document.createElement('canvas');
 	canvasDebilidades.id = 'debilidades';
 
@@ -868,3 +1075,83 @@ var debilidades = function (id) {
     }
 });
 };
+function busqueda(){
+	var listaGeneraciones = document.getElementById("generaciones");
+	var busqueda = document.getElementById("busqueda");
+	var tipo1 = document.getElementById("tipo1");
+	var tipo2 = document.getElementById("tipo2");
+	var legenario = document.getElementById("legendario");
+	var generacionBuscar = listaGeneraciones.selectedIndex;
+	var tipo1Buscar = tipo1.selectedIndex;
+	var tipo2Buscar = tipo2.selectedIndex;
+	$.ajax({
+		method: "PUT",
+		url: "/pokedex",
+		data: {
+			generacion: listaGeneraciones.options[generacionBuscar].value,
+			tipo1: tipo1.options[tipo1Buscar].value,
+			tipo2: tipo2.options[tipo2Buscar].value,
+			legendario: legenario.value,
+			nombre: busqueda.value
+		},
+	}).done(function(data){
+		var lista = document.getElementsByClassName("contenedor")[0];
+	    if(lista !== null){
+	        while (lista.hasChildNodes()){
+	        	lista.removeChild(lista.lastChild);
+	        }
+	    }
+	    var orden = document.getElementById("orden");
+		var ordenBuscar = orden.selectedIndex;
+		if(orden.options[ordenBuscar].value == "ascendente"){
+			for (let index = 0; index < data.length; index++) {	
+				var botoncillo = document.createElement('div');
+				botoncillo.className = "boton";
+				botoncillo.id = data[index];
+				botoncillo.style.background = "url('assets/sprites/"+botoncillo.id+".png')";
+				botoncillo.style.height = "235";
+				botoncillo.style.width = "235";
+				botoncillo.style.padding = "10";
+				botoncillo.style.margin = "10";
+				botoncillo.style.overflow = "wrap";	
+				botoncillo.style.float = "left";
+				botoncillo.setAttribute("onclick", "buscameEsta("+botoncillo.id+")");
+				lista.appendChild(botoncillo);	
+			}
+		}else{
+			for (let index = data.length-1; index >= 0; index--) {	
+				var botoncillo = document.createElement('div');
+				botoncillo.className = "boton";
+				botoncillo.id = data[index];
+				botoncillo.style.background = "url('assets/sprites/"+botoncillo.id+".png')";
+				botoncillo.style.height = "235";
+				botoncillo.style.width = "235";
+				botoncillo.style.padding = "10";
+				botoncillo.style.margin = "10";
+				botoncillo.style.overflow = "wrap";	
+				botoncillo.style.float = "left";
+				botoncillo.setAttribute("onclick", "buscameEsta("+botoncillo.id+")");
+				lista.appendChild(botoncillo);	
+			}
+		}
+	});
+}
+var meterPokemito = function(){
+	limpiameEsta();
+	$(document).keydown(function(e) {
+	     if (e.key === "Escape") { 
+	        vuelve();
+	    }
+	});
+}	
+	
+function enviarPokemon(){
+	datos = {
+			
+	}
+	$.ajax({
+		method: "POST",
+		url: "/pokedex",
+		data: datos,
+	})
+}
