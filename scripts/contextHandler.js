@@ -62,6 +62,9 @@ var lista = function () {
 	nuevoPokemon.id = "nuevoPokemon";
 	nuevoPokemon.value = "Nuevo Pokemon";
 	nuevoPokemon.text = "Nuevo Pokemon";
+	nuevoPokemon.style.position = "absolute";
+	nuevoPokemon.style.marginTop = "45%";
+	nuevoPokemon.style.marginLeft = "10%";
 	nuevoPokemon.style.width = "50";
 	nuevoPokemon.style.height = "50";
 	nuevoPokemon.onclick = function(){
@@ -78,8 +81,8 @@ var lista = function () {
 	
 
 	generaciones.style.position = "absolute";
-	generaciones.style.marginTop = "6%";
-	generaciones.style.marginLeft = "-9%";
+	generaciones.style.marginTop = "9%";
+	generaciones.style.marginLeft = "-11.5%";
 	generaciones.style.width = 200;
 	generaciones.style.height = 50;
 
@@ -133,23 +136,29 @@ var lista = function () {
 	textoLegendario.style.position = "absolute";
 	textoLegendario.style.fontSize= 30;
 	textoLegendario.style.color= "black";
-	textoLegendario.style.marginTop = "30%";
-	textoLegendario.style.marginLeft = "8%";
+	textoLegendario.style.marginTop = "25.6%";
+	textoLegendario.style.marginLeft = "5%";
 	textoLegendario.style.zIndex = 30;
 
 	$(document).ready(function(){
 		$("#textoLegendario").text(nombre2);
 	});
 
+	
 	legendario.style.position = "absolute";
-	legendario.style.marginTop = "35%";
-	legendario.style.marginLeft = "-9%";
+	legendario.style.marginTop = "30%";
+	legendario.style.marginLeft = "-11.5%";
 	legendario.style.width = 50;
 	legendario.style.height = 50;
 	
 	var botonBuscar = document.createElement('input');
 	botonBuscar.type = "button";
 	botonBuscar.setAttribute("onclick", "busqueda()");
+	botonBuscar.style.position = "absolute";
+	botonBuscar.style.marginTop = "2%";
+	botonBuscar.style.marginLeft = "8%";
+	botonBuscar.style.width = 100;
+	botonBuscar.style.height = 30;
 	
 	var tipo1 = document.createElement("select");
 	tipo1.id = "tipo1";
@@ -158,7 +167,7 @@ var lista = function () {
 
 	tipo1.style.position = "absolute";
 	tipo1.style.marginTop = "15%";
-	tipo1.style.marginLeft = "-9%";
+	tipo1.style.marginLeft = "-11.5%";
 	tipo1.style.width = 200;
 	tipo1.style.height = 50;
 
@@ -245,8 +254,8 @@ var lista = function () {
 	var todas = document.createElement("option");
 
 	tipo2.style.position = "absolute";
-	tipo2.style.marginTop = "25%";
-	tipo2.style.marginLeft = "-9%";
+	tipo2.style.marginTop = "21%";
+	tipo2.style.marginLeft = "-11.5%";
 	tipo2.style.width = 200;
 	tipo2.style.height = 50;
 
@@ -334,8 +343,8 @@ var lista = function () {
 	var orden = document.createElement("select");
 	orden.id = "orden";
 	orden.style.position = "absolute";
-	orden.style.marginTop = "50";
-	orden.style.marginLeft = "-9%";
+	orden.style.marginTop = "38%";
+	orden.style.marginLeft = "-11.5%";
 	orden.style.width = 200;
 	orden.style.height = 50;
 
