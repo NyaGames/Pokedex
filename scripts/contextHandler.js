@@ -925,9 +925,18 @@ var estadisticas = function (data) {
 					min: 0,
 				}
 			},			
-			yAxes: {
-				display: false,
-			},		
+			yAxes: [{
+				      gridLines: {
+				        color: 'rgba(255, 255, 255, 1)', // makes grid lines from y axis red
+				        display: false
+				    }
+			}],
+			xAxes: [{
+				      gridLines: {
+				        color: 'rgba(255, 255, 255, 1)', // makes grid lines from y axis red
+				        display: false
+				    }
+			}]
 		}
 	});
 };
@@ -1067,17 +1076,31 @@ var debilidades = function (data) {
     	},
     	scales: {
 			xAxes: [{
+				number:{
+					color:'rgba(0,0,0,1)'
+				},
+				gridLines: {
+				        color: 'rgba(0, 0, 0, 1)', // makes grid lines from y axis red
+				        display: false
+				    },
                 ticks: {
 					fontSize: 24,
 					display: false
                 }
             }],
             yAxes: [{
+            		gridLines: {
+				        color: 'rgba(0, 0, 0, 1)', // makes grid lines from y axis red
+				        display: false
+				    },
                 ticks: {
 					beginAtZero:true,
 					min: 0,
 					max: 4,
-					fontSize: 24
+					fontSize: 24,
+					color: 'orange',
+					borderColor:'orange',
+					backgroundColor: 'orange'
                 }
             }]
 		}
